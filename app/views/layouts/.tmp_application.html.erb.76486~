@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <title>BudgetPro</title>
+	  <%= stylesheet_link_tag :all %>
+	  <%= javascript_include_tag :all %>
+	  <%= csrf_meta_tag %>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="header">
+				<div class="header-controls">
+					<ul>
+					<% if current_user %>
+						<li>Hola <%= current_user.username %>!</li>
+				    	<li><%= link_to "Logout", :logout%></li>
+				    <% end %>
+					</ul>
+				</div>
+			</div>
+			<div class="spacer"></div>
+			<% if current_user %>
+			<div class="primary-navigation">
+				<ul>
+					<li class="active"><%= link_to "Programs", programs_path %></li>
+					<li><%= link_to "Dept Profile", edit_user_path(current_user.id)%></li>
+				</ul>	
+				<div class="clear-both"></div>
+			</div>
+			<% end %>
+			<div class="flash-success"><%= notice %></div>
+			<div class="standard-block">
+			
+			<%= yield %>
+			</div>
+			<div class="footer">
+				<%= image_tag('footer_logo.png') %>
+			</div>	
+		</div>
+	</body>
+</html>

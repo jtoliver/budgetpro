@@ -1,0 +1,52 @@
+<div class="standard-form">
+<%= form_for(@program) do |f| %>
+  <% if @program.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@program.errors.count, "error") %> prohibited this program from being saved:</h2>
+
+      <ul>
+      <% @program.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label(:dept, 'Department', :class => 'main') %><br />
+    <%= f.text_field :dept, :class => 'textbox', :value => '46000' %>
+  </div>
+  <div class="field">
+    <%= f.label(:fund, 'Fund', :class => 'main') %><br />
+    <%= f.text_field :fund, :class => 'textbox' %>
+  </div>
+  <div class="field">
+    <%= f.label(:program, 'Program/Event Name', :class => 'main') %><br />
+    <%= f.text_field :program, :class => 'textbox' %>
+  </div>
+  <div class="field">
+    <%= f.label(:priority, 'Priority Order', :class => 'main') %><br />
+    <%= f.text_field :priority, :class => 'textbox' %>
+  </div>
+  <div class="field">
+    <%= f.label(:prog_status, 'New or Existing Program (if new program explain value added, if existing program FY11 allocation amount)', :class => 'main') %><br />
+    <%= f.text_field :prog_status, :class => 'textbox' %>
+  </div>
+  <div class="field">
+    <%= f.label(:purpose, 'Purpose of Program/Event Name', :class => 'main') %><br />
+    <%= f.text_area :purpose,:size => '25x5', :class => 'textarea' %>
+  </div>
+  <div class="field">
+    <%= f.label(:desc, 'Description of Program/Event', :class => 'main') %><br />
+    <%= f.text_area :desc,:size => '25x5', :class => 'textarea' %>
+  </div>
+  <div class="field">
+    <%= f.label(:link, 'Link to Student Life Strategic Goal', :class => 'main') %><br />
+    <%= f.select :link, options_from_collection_for_select(@goal, 'id', 'goal') %>
+  </div>
+  <div class="field">
+	<%= link_to 'Back', programs_path, :class => 'btn' %>
+	<%= f.submit :class => 'btn', :id => 'emphasis' %>
+  </div>
+<% end %>
+</div>

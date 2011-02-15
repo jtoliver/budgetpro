@@ -1,0 +1,68 @@
+<!--************************************************************************************ PROGRAM *********-->
+
+<h2><a href="#">Program | <%= @program.program %></a></h2>
+<p><b>Department:</b> <%= @program.dept %></p>
+<p><b>Fund:</b> <%= @program.fund %></p>
+<p><b>Program/Event Name:</b> <%= @program.program %></p>
+<p><b>Priority Order:</b> <%= @program.priority %></p>
+<p><b>Program Status:</b> <%= @program.prog_status %></p>
+<p><b>Purpose of Program/Event Name:</b> <%= @program.purpose %></p>
+<p><b>Description of Program/Event:</b> <%= @program.desc %></p>
+<p><b>Link to Student Life Strategic Goal:</b> <%= @program.link %></p>
+<div class="spacer"></div>
+
+<!--************************************************************************************ CREATE PROGRAM'S ITEMS *********-->
+
+<h2><a href="#">Add Item</a></a></h2>
+<div class="standard-form">
+<%= form_for ([@program, @item]) do |f| %>
+	<div class="field">
+	  <%= f.label(:obj_code, 'Object Code', :class => 'main') %><br />
+	  <%= f.select :obj_code, options_from_collection_for_select(@code, :code_without_desc, :code_with_desc, :prompt => true) %>
+	</div>
+	<div class="field">
+	  <%= f.label(:details, 'Detailed Explanation of Need for Funds (Need a description field for each object code)', :class => 'main') %><br />
+	  <%= f.text_area :details, :size => '25x5', :class => 'textarea' %>
+	</div>
+	<div class="field">
+	  <%= f.label(:amount, 'Amount Requested', :class => 'main') %><br />
+	  <%= f.text_field :amount, :class => 'textbox', :id => 'amount' %>
+	</div>
+	<div class="field">
+	  <%= f.submit 'Save' , :class => 'btn', :id => 'emphasis' %>
+	</div>
+<% end %>
+</div>
+<div class="spacer"></div>
+
+<!--************************************************************************************ PROGRAM'S ITEMS *********-->
+
+<h2><a href="#">Items</a></h2>
+<table class="standard-table" border="0" cellpadding="0" cellspacing="0">
+	<caption>Items</caption>
+	<thead>
+		<tr>
+			<th>Object Code</th>
+			<th>Details</th>
+			<th>Amount</th>
+			<th>Options</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @program.items.each do |item| %>
+		<tr>
+			<td width="80px;"><%= item.obj_code %></td>
+			<td><%= item.details %></td>
+			<td width="100px"><%= number_to_currency(item.amount) %></td>
+			<td width="130px"><%= link_to 'Delete', [item.program, item], :confirm => 'Are you sure you want to delete this item?', :method => :delete %>  </td>
+		</tr>
+		<% end %>
+		<tr>
+			<td colspan="2" bgcolor="#ebebeb">TOTAL</td>
+			<td colspan="2" bgcolor="aliceblue"><%= number_to_currency(@program.items.sum('amount')) %></td>
+		</tr>
+	</tbody>
+</table>			
+<div class="spacer"></div>
+<%= link_to 'Back', programs_path, :class => 'btn' %>
+<div class="spacer"></div>

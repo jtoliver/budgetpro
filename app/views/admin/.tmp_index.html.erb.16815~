@@ -1,0 +1,35 @@
+<h1>Admin#index</h1>
+
+
+<table>
+  <tr>
+  	<th>Dept</th>
+	<th>Fund</th>
+	<th>program</th>
+	<th>priority</th>
+	<th>prog_status</th>
+	<th>purpose</th>
+	<th>desc</th>
+	<th>link</th>
+    <th>code</th>
+    <th>dtails</th>
+	<th>Amount</th>
+
+  </tr>
+
+<% @items.each do |item| %>
+  <tr>
+    <td><%= item.program.dept %></td>
+	<td><%= item.program.fund %></td>
+	<td><%= item.program.program %></td>
+	<td><%= item.program.priority %></td>
+	<td><%= item.program.prog_status %></td>
+	<td><%= item.program.purpose %></td>
+	<td><%= item.program.desc %></td>
+	<td><%= item.program.link %></td>
+    <td><%= item.obj_code %></td>
+    <td><%= item.details %></td>
+	<td><%= item.amount %></td>
+  </tr>
+<% end %>
+</table>

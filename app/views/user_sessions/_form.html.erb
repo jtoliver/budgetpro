@@ -1,0 +1,25 @@
+<div class="standard-form">
+<%= form_for(@user_session) do |f| %>
+  <% if @user_session.errors.any? %>
+    <div id="error_explanation">
+     <ul>
+      <% @user_session.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label(:username, :class => 'main') %><br />
+    <%= f.text_field :username, :class => 'textbox' %>
+  </div>
+  <div class="field">
+    <%= f.label(:password, :class => 'main') %><br />
+    <%= f.password_field :password, :class => 'textbox' %>
+  </div>
+  <div class="field">
+    <%= f.submit :class => 'btn', :id => 'emphasis' %>
+  </div>
+<% end %>
+</div>

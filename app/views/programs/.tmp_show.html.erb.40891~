@@ -1,0 +1,85 @@
+<p id="notice"><%= notice %></p>
+<h2><a href="#">Program | <%= @program.program %></a></h2>
+<p>
+  <b>Dept:</b>
+  <%= @program.dept %>
+</p>
+
+<p>
+  <b>Fund:</b>
+  <%= @program.fund %>
+</p>
+
+<p>
+  <b>Program:</b>
+  <%= @program.program %>
+</p>
+
+<p>
+  <b>Priority:</b>
+  <%= @program.priority %>
+</p>
+
+<p>
+  <b>Prog status:</b>
+  <%= @program.prog_status %>
+</p>
+
+<p>
+  <b>Purpose:</b>
+  <%= @program.purpose %>
+</p>
+
+<p>
+  <b>Desc:</b>
+  <%= @program.desc %>
+</p>
+
+<p>
+  <b>Link:</b>
+  <%= @program.link %>
+</p>
+<div class="spacer"></div>
+
+<h2><a href="#">Add Item</h2>
+<%= form_for([@program, @program.items.build]) do |f| %>
+	<div class="field">
+	  <%= f.label :obj_code %><br />
+	  <%= f.text_field :obj_code %>
+	</div>
+	<div class="field">
+	  <%= f.label :details %><br />
+	  <%= f.text_area :details %>
+	</div>
+	<div class="field">
+	  <%= f.label :amount %><br />
+	  <%= f.text_field :amount %>
+	</div>
+	<div class="actions">
+	  <%= f.submit %>
+	</div>
+<% end %>
+<div class="spacer"></div>
+
+<h2><a href="#">Items</h2>
+<table class="standard-table" border="0" cellpadding="0" cellspacing="0">
+	<caption>Items</caption>
+	<thead>
+		<tr>
+			<th>Object Code</th>
+			<th>Details</th>
+			<th>Amount</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @program.items.each do |item| %>
+		<tr>
+			<td><%= item.obj_code %></td>
+			<td><%= item.details %></td>
+			<td><%= item.amount %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>			
+
+<%= link_to 'Back', programs_path %>
