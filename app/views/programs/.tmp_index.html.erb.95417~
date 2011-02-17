@@ -11,7 +11,7 @@
 	  </tr>
 	</thead>
 	<tbody>
-		<% @program.each do |program| %>
+		<% @programs.each do |program| %>
 		  <tr onmouseover="this.className='highlight'" onmouseout="this.className='normal'">
 		    <td><%= program.fund %></td>
 		    <td><%= program.program %></td>

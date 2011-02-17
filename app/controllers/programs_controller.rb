@@ -3,7 +3,7 @@ class ProgramsController < ApplicationController
   before_filter :require_user
   
   def index
-    @programs = current_user.programs.all
+    @program = current_user.programs.all
   end
 
   def show

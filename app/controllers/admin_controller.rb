@@ -11,11 +11,11 @@ class AdminController < ApplicationController
     
     csv_string = CSV.generate do |csv|
       #header
-      csv << ["Department", "Fund", "Program", "Priority", "Program Status", "Purpose", "Desc", "link", "code", "details", "amount"]
+      csv << ["Department", "Fund", "Program", "Priority", "Program Status", "Purpose", "Desc", "link", "code", "details", "amount", "updated"]
     
       #rows
       @items.each do |item|
-      csv << [item.program.dept, item.program.fund, item.program.program, item.program.priority, item.program.prog_status, item.program.purpose, item.program.desc, item.program.link, item.obj_code, item.details, item.amount]
+      csv << [item.program.dept, item.program.fund, item.program.program, item.program.priority, item.program.prog_status, item.program.purpose, item.program.desc, item.program.link, item.obj_code, item.details, item.amount, item.updated_at]
       end   
     end
   

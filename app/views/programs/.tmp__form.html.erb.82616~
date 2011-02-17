@@ -42,7 +42,7 @@
   </div>
   <div class="field">
     <%= f.label(:link, 'Link to Student Life Strategic Goal', :class => 'main') %><br />
-    <%= select_tag "program[link][]", options_for_select([ 'Goal 1', 'Goal 2', 'Goal 3', 'Goal 4', 'Goal 5', 'Goal 6' ]), :multiple => true %>
+    <%= f.select :link, options_from_collection_for_select(@goal, :goal_num, :goal_num) %>
 	<%= link_to "What are the defintion of these goals?", :ref, :class => 'lbOn' %>
   </div>
   <div class="field">

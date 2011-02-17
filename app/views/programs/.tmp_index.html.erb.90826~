@@ -11,13 +11,13 @@
 	  </tr>
 	</thead>
 	<tbody>
-		<% @program.each do |program| %>
+		<% @programs.each do |program| %>
 		  <tr onmouseover="this.className='highlight'" onmouseout="this.className='normal'">
 		    <td><%= program.fund %></td>
 		    <td><%= program.program %></td>
 		    <td><%= program.priority %></td>
 		    <td><%= program.prog_status %></td>
-		    <td width="150px"><%= link_to 'Add Items', program %> |
+		    <td width="130px"><%= link_to 'Show', program %> |
 		    <%= link_to 'Edit', edit_program_path(program) %> |
 		    <%= link_to 'Delete', program, :confirm => 'Are you sure you want to delete this? If you do it will also delete all of the items under this program.', :method => :delete %></td>
 		  </tr>
