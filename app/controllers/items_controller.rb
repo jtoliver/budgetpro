@@ -74,12 +74,11 @@ class ItemsController < ApplicationController
   # DELETE /items/1
   # DELETE /items/1.xml
   def destroy
-    @program = Program.find(params[:program_id])
-    @item = @program.items.find(params[:id])
+    @item = Item.find(params[:id])
     @item.destroy
 
     respond_to do |format|
-      format.html { redirect_to(program_path(@program), :notice => 'The program was deleted.') }
+      format.html { redirect_to(program_path(@item.program), :notice => 'The program was deleted.') }
       format.xml  { head :ok }
     end
   end
