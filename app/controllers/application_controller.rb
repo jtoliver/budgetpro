@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
       unless current_user.username == "Admin"
         store_location
         flash[:notice] = "You are not an admin!...Go away!"
-        redirect_to programs_url
+        redirect_to new_user_session_url
         return false
       end
     end

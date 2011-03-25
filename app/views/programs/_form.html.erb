@@ -18,7 +18,7 @@
   </div>
   <div class="field">
     <%= f.label(:fund, 'Fund', :class => 'main') %><br />
-	<%= f.select(:fund, options_for_select([['D501 Intramurals', 'D501 Intramurals'], ['D502 Minority Student Affairs','D502 Minority Student Affairs'], ['D503 Alcohol & Drug Programs', 'D503 Alcohol & Drug Programs'], ['D504 Community Service Programs', 'D504 Community Service Programs'], ['D505 Recreational Programs', 'D505 Recreational Programs'], ['D507 Student Org Support Staff II', 'D507 Student Org Support Staff II'], ['D508 Student Org Support Staff I', 'D508 Student Org Support Staff I'], ['D509 Leadership', 'D509 Leadership'], ['D511 Womens Studies', 'D511 Womens Studies'], ['D512 Golden Spur', 'D512 Golden Spur'], ['D513 RHUU Program Office', 'D513 RHUU Program Office'], ['D514 Off Campus Services', 'D514 Off Campus Services'],['D519 Leadership Training', 'D519 Leadership Training'], ['D516 MLK Day of Service', 'D516 MLK Day of Service']])) %>
+    <%= f.text_field :fund, :class => 'textbox' %>
   </div>
   <div class="field">
     <%= f.label(:program, 'Program/Event Name', :class => 'main') %><br />
@@ -42,8 +42,7 @@
   </div>
   <div class="field">
     <%= f.label(:link, 'Link to Student Life Strategic Goal', :class => 'main') %><br />
-    <%= select_tag "program[link][]", options_for_select([ 'Goal 1', 'Goal 2', 'Goal 3', 'Goal 4', 'Goal 5', 'Goal 6' ]), :multiple => true %>
-	<%= link_to "What are the defintion of these goals?", :ref, :class => 'lbOn' %>
+    <%= f.select :link, options_from_collection_for_select(@goal, :goal_num, :goal_num) %>
   </div>
   <div class="field">
 	<%= link_to 'Back', programs_path, :class => 'btn' %>

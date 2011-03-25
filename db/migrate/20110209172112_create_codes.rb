@@ -3,6 +3,7 @@ class CreateCodes < ActiveRecord::Migration
     create_table :codes do |t|
       t.string :objcode
       t.string :description
+
       t.timestamps
     end
   end

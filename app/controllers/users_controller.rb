@@ -1,8 +1,4 @@
 class UsersController < ApplicationController
-  
-  before_filter :require_user, :only => [:show, :index, :update, :destroy]
-  before_filter :check_if_admin, :only => [:index]
-  
   # GET /users
   # GET /users.xml
   def index
@@ -17,7 +13,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.xml
   def show
-    @user = User.find(current_user.id)
+    @user = User.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -38,7 +34,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(current_user.id)
+    @user = User.find(params[:id])
   end
 
   # POST /users
@@ -48,7 +44,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to(:programs, :notice => 'Registration successfull.') }
+        format.html { redirect_to(:users, :notice => 'Registration successfull.') }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "new" }
@@ -60,11 +56,11 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.xml
   def update
-    @user = User.find(current_user.id)
+    @user = User.find(params[:id])
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to(:programs, :notice => 'User was successfully updated.') }
+        format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

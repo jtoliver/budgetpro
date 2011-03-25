@@ -4,8 +4,7 @@ class CreateItems < ActiveRecord::Migration
       t.string :obj_code
       t.text :details
       t.string :amount
-      t.string :approved
-      t.references :program, :null => false
+      t.references :program
       
       t.timestamps
     end

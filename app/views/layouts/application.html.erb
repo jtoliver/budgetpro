@@ -14,8 +14,6 @@
 					<% if current_user %>
 						<li>Hola <%= current_user.username %>!</li>
 				    	<li><%= link_to "Logout", :logout%></li>
-					<% else %>
-						<li><%= link_to "Sign up", users_path, :method => :new %></li>	
 				    <% end %>
 					</ul>
 				</div>
@@ -30,11 +28,10 @@
 				<div class="clear-both"></div>
 			</div>
 			<% end %>
-			<% if !notice.nil? %>
 			<div class="flash-success"><%= notice %></div>
-			<% end %>
-			<div class="standard-block">		
-				<%= yield %>
+			<div class="standard-block">
+			
+			<%= yield %>
 			</div>
 			<div class="footer">
 				<%= image_tag('footer_logo.png') %>

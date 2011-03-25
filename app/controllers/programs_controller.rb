@@ -2,30 +2,46 @@ class ProgramsController < ApplicationController
   
   before_filter :require_user
   
+  # GET /programs
+  # GET /programs.xml
   def index
-    @program = current_user.programs.all
+    @programs = Program.where(:user_id => current_user).all
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @programs }
+    end
   end
 
+  # GET /programs/1
+  # GET /programs/1.xml
   def show
     @program = Program.find(params[:id])
     @code  = Code.all
-    @item = @program.items.new
-  end
-  
-  def ref
-    render :layout => 'blank'
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @program }
+    end
   end
 
+  # GET /programs/new
+  # GET /programs/new.xml
   def new
     @program = Program.new
     @goal = Goal.all
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @program }
+    end
   end
 
+  # GET /programs/1/edit
   def edit
     @program = Program.find(params[:id])
     @goal = Goal.all
   end
 
+  # POST /programs
+  # POST /programs.xml
   def create
     @user = current_user
     @program = @user.programs.new(params[:program])
@@ -40,6 +56,8 @@ class ProgramsController < ApplicationController
     end
   end
 
+  # PUT /programs/1
+  # PUT /programs/1.xml
   def update
     @program = Program.find(params[:id])
 
@@ -54,6 +72,8 @@ class ProgramsController < ApplicationController
     end
   end
 
+  # DELETE /programs/1
+  # DELETE /programs/1.xml
   def destroy
     @program = Program.find(params[:id])
     @program.destroy
