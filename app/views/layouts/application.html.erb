@@ -12,8 +12,10 @@
 				<div class="header-controls">
 					<ul>
 					<% if current_user %>
-						<li>Hola <%= current_user.username %>!</li>
+						<li>Konichiwa <%= current_user.username %>!</li>
 				    	<li><%= link_to "Logout", :logout%></li>
+					<% else %>
+						<li><%= link_to "Sign up", users_path, :method => :new %></li>	
 				    <% end %>
 					</ul>
 				</div>
@@ -28,10 +30,11 @@
 				<div class="clear-both"></div>
 			</div>
 			<% end %>
+			<% if !notice.nil? %>
 			<div class="flash-success"><%= notice %></div>
-			<div class="standard-block">
-			
-			<%= yield %>
+			<% end %>
+			<div class="standard-block">		
+				<%= yield %>
 			</div>
 			<div class="footer">
 				<%= image_tag('footer_logo.png') %>

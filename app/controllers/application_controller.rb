@@ -42,10 +42,10 @@ class ApplicationController < ActionController::Base
     end
   
     def check_if_admin
-      unless current_user.username == "Admin"
+      unless current_user.username == "admin"
         store_location
-        flash[:notice] = "You are not an admin!...Go away!"
-        redirect_to new_user_session_url
+        flash[:notice] = "Can't touch this!"
+        redirect_to programs_url
         return false
       end
     end

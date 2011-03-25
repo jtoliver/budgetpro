@@ -9,7 +9,7 @@ class CreatePrograms < ActiveRecord::Migration
       t.text :purpose
       t.text :desc
       t.string :link
-      t.references :user
+      t.references :user, :null => false
 
       t.timestamps
     end

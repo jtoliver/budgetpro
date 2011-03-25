@@ -1,3 +1,4 @@
+<div class="standard-form">
 <%= form_for(@item) do |f| %>
   <% if @item.errors.any? %>
     <div id="error_explanation">
@@ -12,18 +13,20 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :obj_code %><br />
-    <%= f.text_field :obj_code %>
+    <%= f.label(:obj_code, 'Object Code', :class => 'main') %><br />
+     <%= f.select :obj_code, options_from_collection_for_select(@code, :code_without_desc, :code_with_desc, :prompt => true) %>
   </div>
   <div class="field">
-    <%= f.label :details %><br />
-    <%= f.text_area :details %>
+    <%= f.label(:details, 'Detailed Explanation of Need for Funds (Need a description field for each object code)', :class => 'main') %><br />
+    <%= f.text_area :details, :size => '25x5', :class => 'textarea' %>
   </div>
   <div class="field">
-    <%= f.label :amount %><br />
-    <%= f.text_field :amount %>
+    <%= f.label(:amount, 'Amount Requested', :class => 'main') %><br />
+    <%= f.text_field :amount, :class => 'textbox' %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="field">
+  	<%= link_to 'Back', program_path(@item.program), :class => 'btn' %>
+    <%= f.submit :class => 'btn', :id => 'emphasis'  %>
   </div>
 <% end %>
+</div>

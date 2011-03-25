@@ -15,7 +15,7 @@
 
 <h2><a href="#">Add Item</a></a></h2>
 <div class="standard-form">
-<%= form_for([@program, @program.items.build]) do |f| %>
+<%= form_for ([@program, @item]) do |f| %>
 	<div class="field">
 	  <%= f.label(:obj_code, 'Object Code', :class => 'main') %><br />
 	  <%= f.select :obj_code, options_from_collection_for_select(@code, :code_without_desc, :code_with_desc, :prompt => true) %>
@@ -37,7 +37,7 @@
 
 <!--************************************************************************************ PROGRAM'S ITEMS *********-->
 
-<h2><a href="#">Items</a></h2>
+<h2><a href="#">Items (<%= @program.items.count%>)</a></h2>
 <table class="standard-table" border="0" cellpadding="0" cellspacing="0">
 	<caption>Items</caption>
 	<thead>
@@ -54,7 +54,10 @@
 			<td width="80px;"><%= item.obj_code %></td>
 			<td><%= item.details %></td>
 			<td width="100px"><%= number_to_currency(item.amount) %></td>
-			<td width="130px"> Approve| Edit | <%= link_to 'Delete', [item.program, item], :confirm => 'Are you sure you want to delete this item?', :method => :delete %>  </td>
+			<td width="130px">
+				<%= link_to 'Edit', edit_item_path(item) %>
+				<%= link_to 'Delete', item_path(item), :confirm => 'Are you sure you want to delete this item?', :method => :delete %>  
+			</td>
 		</tr>
 		<% end %>
 		<tr>

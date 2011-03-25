@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
   # GET /items/new
   # GET /items/new.xml
   def new
-    @item = Item.new
+    @item = item.new
     @code = Code.all
     respond_to do |format|
       format.html # new.html.erb
@@ -34,7 +34,8 @@ class ItemsController < ApplicationController
 
   # GET /items/1/edit
   def edit
-    #@item = Item.find(params[:id])
+    @item = Item.find(params[:id])
+    @code = Code.all
   end
 
   # POST /items
@@ -61,7 +62,7 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.update_attributes(params[:item])
-        format.html { redirect_to(@item, :notice => 'Item was successfully updated.') }
+        format.html { redirect_to(@item.program, :notice => 'Item was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -73,12 +74,11 @@ class ItemsController < ApplicationController
   # DELETE /items/1
   # DELETE /items/1.xml
   def destroy
-    @program = Program.find(params[:program_id])
-    @item = @program.items.find(params[:id])
+    @item = Item.find(params[:id])
     @item.destroy
 
     respond_to do |format|
-      format.html { redirect_to program_path(@program) }
+      format.html { redirect_to(program_path(@item.program), :notice => 'The program was deleted.') }
       format.xml  { head :ok }
     end
   end
