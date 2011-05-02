@@ -12,7 +12,7 @@ development:
   database: budgetPro_development
   pool: 5
   username: root
-  password: 
+  password: jatolive21
   host: localhost
 
 # Warning: The database defined as "test" will be erased and

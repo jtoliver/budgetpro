@@ -26,6 +26,9 @@
 				<ul>
 					<li class="active"><%= link_to "Programs", programs_path %></li>
 					<li><%= link_to "Dept Profile", edit_user_path(current_user.id)%></li>
+					<% if (current_user = "admin") %>
+						<li><a href="http://dev.sa.sc.edu/export">Export</a></li>
+					<% end %>	
 				</ul>	
 				<div class="clear-both"></div>
 			</div>
